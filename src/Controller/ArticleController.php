@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Repository\ArticleRepository;
 use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Michelf\MarkdownInterface;
@@ -16,31 +17,26 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ArticleController extends AbstractController
 {
+
     /**
      * @Route("/", name = "app_homepage")
      */
+    public function homepage(ArticleRepository $repository)
+    {
+        /** @var Article $articles */
+        $articles = $repository->findAllPublishedOrderedByNewest();
 
-    public function homepage(){
-
-        return $this->render('/article/homepage.html.twig');
+        return $this->render('/article/homepage.html.twig',[
+            'articles' => $articles,
+        ]);
 
     }
+
 
     /**
      * @Route("/news/{slug}", name="article_show")
      */
-    public function show($slug, EntityManagerInterface $entityManager){
-
-
-
-        $repository = $entityManager->getRepository(Article::class);
-        /** @var Article $article */
-        $article = $repository->findOneBy(['slug' => $slug]);
-
-        if (!$article){
-            throw $this->createNotFoundException(sprintf('No article for slug "%s"', $slug));
-        }
-
+    public function show(Article $article){
 
         $comments = ['ovo je 1. kom','ovo je 2. kom','ovo je 3. kom'];
 
