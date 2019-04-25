@@ -22,9 +22,9 @@ class MarkdownHelper
      */
     private $logger;
 
+
     public function  __construct(AdapterInterface $cache, MarkdownInterface $markdown, LoggerInterface $logger)
     {
-
         $this->cache = $cache;
         $this->markdown = $markdown;
 
