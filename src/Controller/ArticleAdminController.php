@@ -10,7 +10,7 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,7 +28,7 @@ class ArticleAdminController extends AbstractController
 
         $article = new Article();
         $article->setTitle('why asteroids taste like bacon')
-            ->setSlug(rand(100, 900))
+            ->setSlug('why-'.rand(100, 999))
             ->setContent(<<<EOF
 Spicy **jalapeno bacon** ipsum dolor amet veniam shank in dolore. Ham hock nisi landjaeger cow,
 lorem proident [beef ribs](https://baconipsum.com/) aute enim veniam ut cillum pork chuck picanha. Dolore reprehenderit
