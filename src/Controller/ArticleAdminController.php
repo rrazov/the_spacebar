@@ -24,8 +24,9 @@ class ArticleAdminController extends AbstractController
      */
     public function new(EntityManagerInterface $entityManager)
     {
-        $entityManager = $this->getDoctrine()->getManager();
+        die('todo');
 
+        $entityManager = $this->getDoctrine()->getManager();
         $article = new Article();
         $article->setTitle('why asteroids taste like bacon')
             ->setSlug('why-'.rand(100, 999))
@@ -51,6 +52,11 @@ EOF
             $article->setPublishedAt(new \DateTime(sprintf('-%d days', rand(1, 100))));
         }
 
+        $article->setAuthor('Mike Ferengi')
+            ->setHeartCount(rand(5, 100))
+            ->setImageFilename('asteroid.jpeg')
+        ;
+
         $entityManager->persist($article);
         $entityManager->flush();
 
@@ -59,8 +65,6 @@ EOF
             $article->getId(),
             $article->getSlug()
         ));
-
-
     }
 
 }

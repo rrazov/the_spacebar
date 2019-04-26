@@ -35,6 +35,7 @@ class ArticleRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder($qb)
             ->andWhere('a.publishedAt IS NOT NULL');
+
     }
 
     private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
