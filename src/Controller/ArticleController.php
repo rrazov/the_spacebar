@@ -5,7 +5,9 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentRepository;
 use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Michelf\MarkdownInterface;
@@ -38,12 +40,9 @@ class ArticleController extends AbstractController
      */
     public function show(Article $article){
 
-        $comments = ['ovo je 1. kom','ovo je 2. kom','ovo je 3. kom'];
-
 
         return $this->render('article/show.html.twig', [
-                'article' => $article,
-                'comments' => $comments
+                'article' => $article
             ]);
 
     }
