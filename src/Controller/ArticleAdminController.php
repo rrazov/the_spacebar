@@ -10,17 +10,22 @@ namespace App\Controller;
 
 
 use App\Entity\Article;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 
-
+/**
+ * Class ArticleAdminController
+ * @package App\Controller
+ * @IsGranted("ROLE_ADMIN")
+ */
 class ArticleAdminController extends AbstractController
 {
 
     /**
-     * @Route("/admin/article/new")
+     * @Route("/admin/article/new", name="admin_article_new")
      */
     public function new(EntityManagerInterface $entityManager)
     {
